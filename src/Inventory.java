@@ -6,7 +6,6 @@ public class Inventory {
 
     private Inventory() { //приватный конструктор
         this.inventory = new ArrayList<>();
-        // Инициализация инвентаризации товарами
         inventory.add(new CPU("Intel i9", 10, 1100));
         inventory.add(new CPU("Intel i7", 2, 1000));
         inventory.add(new CPU("Intel i5", 7, 850));

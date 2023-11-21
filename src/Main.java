@@ -15,9 +15,23 @@ public class Main {
         //decorator design pattern
         Product loyalCpu = new DiscountLoyalty(new CPU("Intel i9", 10, 1100), 15);
 
-        // Добавляем скидку в праздничные дни к товару с скидкой лояльности
+        //скидка в праздничные дни со скидкой лояльности
         Product loyalholiday = new DiscountHoliday(loyalCpu, 20);
         Product finalProduct = new DiscountBenefit(loyalholiday, 10);
         System.out.println(finalProduct.getName() + "\nЦена: " + finalProduct.getPrice());
+
+        //strategy design pattern
+        Product cpu = new CPU("Intel i3", 12, 500);
+        int cost = cpu.getPrice();
+        Order order = new Order();
+        order.setDelivery(new DeliveryStandard(cpu.getPrice())); //стандартная доставка
+        cost = order.performDelivery();
+        System.out.println("Доставка обошлась в " + cost + " долларов");
+        order.setDelivery(new DeliveryExpress(cpu.getPrice())); //экспресс доставка
+        cost = order.performDelivery();
+        System.out.println("Доставка обошлась в " + cost + " долларов");
+        order.setDelivery(new DeliveryPickup(cpu.getPrice())); //самовывоз
+        cost = order.performDelivery();
+        System.out.println("Доставка обошлась в " + cost + " долларов");
     }
 }
