@@ -1,10 +1,7 @@
 public class Main {
     public static void main(String[] args) {
-        Product cpu = new CPU("Intel i9", 15);
-        System.out.println(cpu.getName());
-        System.out.println(cpu.getQuantity());
-        cpu.setQuantity(10);
-        System.out.println(cpu.getQuantity());
+        //singleton design pattern
+
         Inventory inventory1 = Inventory.getInstance();
         inventory1.displayInventory();
         inventory1.changeQuantity("Intel i9", 8);
@@ -14,5 +11,13 @@ public class Main {
         inventory1.changeQuantity("Intel i9", 9);
         inventory2.displayInventory();
         //разные админы могут управлять одним складом
+
+        //decorator design pattern
+        Product loyalCpu = new DiscountLoyalty(new CPU("Intel i9", 10, 1100), 15);
+
+        // Добавляем скидку в праздничные дни к товару с скидкой лояльности
+        Product loyalholiday = new DiscountHoliday(loyalCpu, 20);
+        Product finalProduct = new DiscountBenefit(loyalholiday, 10);
+        System.out.println(finalProduct.getName() + "\nЦена: " + finalProduct.getPrice());
     }
 }

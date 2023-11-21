@@ -1,10 +1,12 @@
 public class CPU extends Product{
     private final String name;
     private int quantity;
-    public CPU(String name, int quantity) {
-        super(name, quantity);
+    private int price;
+    public CPU(String name, int quantity, int price) {
+        super(name, quantity, price);
         this.name = name;
         this.quantity = quantity;
+        this.price = price;
     }
     public String getName(){
         return name;
@@ -14,5 +16,11 @@ public class CPU extends Product{
     }
     public void setQuantity(int quantity){
         this.quantity = quantity;
+    }
+    public int getPrice(){
+        return price;
+    }
+    public void setPrice(int price){
+        this.price = price;
     }
 }

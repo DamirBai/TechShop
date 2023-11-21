@@ -7,9 +7,9 @@ public class Inventory {
     private Inventory() { //приватный конструктор
         this.inventory = new ArrayList<>();
         // Инициализация инвентаризации товарами
-        inventory.add(new CPU("Intel i9", 10));
-        inventory.add(new CPU("Intel i7", 2));
-        inventory.add(new CPU("Intel i5", 7));
+        inventory.add(new CPU("Intel i9", 10, 1100));
+        inventory.add(new CPU("Intel i7", 2, 1000));
+        inventory.add(new CPU("Intel i5", 7, 850));
     }
 
     public static Inventory getInstance() { //дефолт имплементация синглтона
@@ -22,7 +22,7 @@ public class Inventory {
     public void displayInventory() { //проверка склада
         System.out.println("Current Inventory:");
         for (Product product : inventory) {
-            System.out.println(product.getName() + ": " + product.getQuantity());
+            System.out.println(product.getName() + ": " + product.getQuantity() + ", " + product.getPrice() + " dollars");
         }
     }
 
@@ -39,6 +39,12 @@ public class Inventory {
         Product product = findProduct(productName);
         if(product != null){
             product.setQuantity(quantity);
+        }
+    }
+    public void changePrice(String productName, int price) { //меняет цену
+        Product product = findProduct(productName);
+        if(product != null){
+            product.setPrice(price);
         }
     }
 }
